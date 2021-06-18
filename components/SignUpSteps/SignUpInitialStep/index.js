@@ -1,5 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import Link from "next/link"
+
 import { Box, Heading, Text, Button, Spacer } from '@chakra-ui/react'
 import { ChatIcon, CheckCircleIcon } from '@chakra-ui/icons'
 import StepsBar, {STEP_STATUS} from '../../StepsBar'
@@ -39,7 +41,9 @@ const SignUpInitialStep = props => {
             <Button colorScheme="green" size="sm"><ChatIcon/> {" "}Contato Via Whatsapp</Button>
             <Box marginTop="50px">
                 <Text fontWeight="bold">Bom Cadastro!</Text>
-                <Button marginTop="10px" colorScheme="blue" size="lg">Iniciar Preenchimento</Button>
+                <Link href="/signup">
+                    <Button marginTop="10px" colorScheme="blue" size="lg">Iniciar Preenchimento</Button>
+                </Link>
             </Box>
 
         </Box>

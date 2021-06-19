@@ -11,12 +11,11 @@ CREATE TABLE `Member` (
   `district` varchar(100) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
   `phone` varchar(30) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
   `email` varchar(256) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
-  `social_network` varchar(100) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `social_network` varchar(100) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL,
   `how_join` varchar(100) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
   `favorite_reunion` varchar(30) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
-  `has_ministry` tinyint(1) NOT NULL DEFAULT '0',
-  `ministries` varchar(100) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL,
-  `intendedMinistries` varchar(100) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL,
+  `has_ministery` tinyint(1) NOT NULL DEFAULT '0',
+  `ministery` varchar(100) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL,
   `department` varchar(100) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
   `ministery_leader` varchar(256) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL,
   `has_go` tinyint(1) NOT NULL DEFAULT '0',
@@ -26,5 +25,6 @@ CREATE TABLE `Member` (
   `social_skills` text CHARACTER SET utf8 COLLATE utf8_general_ci,
   `maintenance_skills` text,
   `other_skills` text CHARACTER SET utf8 COLLATE utf8_general_ci,
+  `courses` text CHARACTER SET utf8 COLLATE utf8_general_ci,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb3
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb3;

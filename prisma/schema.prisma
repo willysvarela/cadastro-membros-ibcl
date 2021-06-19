@@ -19,10 +19,10 @@ model Member {
   district           String   @db.VarChar(100)
   phone              String   @db.VarChar(30)
   email              String   @db.VarChar(256)
-  social_network     String   @db.VarChar(100)
+  social_network     String?  @db.VarChar(100)
   how_join           String   @db.VarChar(100)
   favorite_reunion   String   @db.VarChar(30)
-  has_minitery       Boolean  @default(false)
+  has_ministery      Boolean  @default(false)
   ministery          String?  @db.VarChar(100)
   department         String   @db.VarChar(100)
   ministery_leader   String?  @db.VarChar(256)
@@ -33,4 +33,5 @@ model Member {
   social_skills      String?  @db.Text
   maintenance_skills String?  @db.Text
   other_skills       String?  @db.Text
+  courses            String?  @db.Text
 }

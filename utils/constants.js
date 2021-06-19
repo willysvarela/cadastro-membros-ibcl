@@ -13,7 +13,7 @@ export const FIELD_TITLE = {
     addressNumber: "Número",
     district: "Bairro",
     phone: "Telefone",
-    mail: "Email",
+    email: "Email",
     socialNetwork: "Rede Social",
     gender: "Gênero",
     ministries: "Ministérios",

@@ -1,38 +1,151 @@
-import React from 'react'
-import { useForm } from "react-hook-form"
-
-import { Box, Text, FormControl, FormLabel, FormErrorMessage, FormHelperText, Input } from '@chakra-ui/react'
-
-import CardHeader from '../../CardHeader'
-import { Button } from '@chakra-ui/react'
+import React from "react"
+import { Box, Text, FormControl, FormLabel, FormErrorMessage, FormHelperText, Input, SimpleGrid, Grid, GridItem, RadioGroup, Stack, Radio, Select } from "@chakra-ui/react"
+import { Controller, useFormContext, useFormState } from "react-hook-form";
 
 const SignUpStep1 = props => {
-
-    const {
-        handleSubmit,
-        register,
-        formState: { errors, isSubmitting }
-      } = useForm();
-
-    const handleClickNext = () => {
-        props.onClickNext();
-    }
-
-    const handleSubmitForm = (values) => {
-        console.log(values);
-    }
+    const { register, control } = useFormContext();
+    const { errors } = useFormState();
 
     return (
         <Box>
-            <form onSubmit={handleSubmit(handleSubmitForm)}>
-                <Box>
-                    <FormControl id="name">
+            <Box>
+            </Box>
+            <Grid templateColumns={{sm: "repeat(6, 1fr)", md: "repeat(6, 1fr)", }} gap={6}>
+                <GridItem colSpan={6}>
+                    <FormControl id="name" isInvalid={errors.name}>
                         <FormLabel>Nome</FormLabel>
-                        <Input id="name" type="text" {...register("name", {required: true})} />
+                        <Input id="name" type="text" {...register("name", {required: "Campo obrigatório"})} />
+                        <FormErrorMessage>
+                            {errors.name && errors.name.message}
+                        </FormErrorMessage>
                     </FormControl>
-                </Box>
-            <Button onClick={handleClickNext} isLoading={isSubmitting} type="submit">Próximo</Button>
-            </form>
+                </GridItem>
+
+                <GridItem colSpan={3}>
+                    <FormControl id="birthDate" isInvalid={errors.birthDate}>
+                        <FormLabel>Data de Nascimento</FormLabel>
+                        <Input id="birthDate" type="date" {...register("birthDate", {required: "Campo obrigatório"})} />
+                        <FormErrorMessage>
+                            {errors.birthDate && errors.birthDate.message}
+                        </FormErrorMessage>
+                    </FormControl>
+                </GridItem>
+
+                <GridItem colSpan={3}>
+                    <FormControl as="fieldset">
+                        <FormLabel as="legend">Sexo</FormLabel>
+                        <Controller
+                            name="gender"
+                            control={control} 
+                            render={({ field }) => (
+                                <RadioGroup {...field}>
+                                    <Stack spacing="24px">
+                                        <Radio name="gender" value="Masculino">Masculino</Radio>
+                                        <Radio name="gender" value="Feminino">Feminino</Radio>
+                                    </Stack>
+                                </RadioGroup>
+                            )}
+                        />
+                    </FormControl>
+                </GridItem>
+
+                <GridItem colSpan={6}>
+                    <FormControl id="civilState" isInvalid={errors.civilState}>
+                        <FormLabel>Estado Civíl</FormLabel>
+                        <Controller
+                            name="civilState"
+                            control={control} 
+                            render={({ field }) => (
+                                <Select {...field}>
+                                    <option name="civilState" value="Casado">Casado</option>
+                                    <option name="civilState" value="Solteiro">Solteiro</option>
+                                    <option name="civilState" value="Viúvo">Viúvo</option>
+                                </Select>
+                            )}
+                        />
+                    </FormControl>
+                </GridItem>
+
+                <GridItem colSpan={6}>
+                    <FormControl id="fatherName" isInvalid={errors.fatherName}>
+                        <FormLabel>Nome do Pai</FormLabel>
+                        <Input id="fatherName" type="text" {...register("fatherName", {required: "Campo obrigatório"})} />
+                        <FormErrorMessage>
+                            {errors.fatherName && errors.fatherName.message}
+                        </FormErrorMessage>
+                    </FormControl>
+                </GridItem>
+
+                <GridItem colSpan={6}>
+                    <FormControl id="motherName" isInvalid={errors.motherName}>
+                        <FormLabel>Nome da Mãe</FormLabel>
+                        <Input id="motherName" type="text" {...register("motherName", {required: "Campo obrigatório"})} />
+                        <FormErrorMessage>
+                            {errors.motherName && errors.motherName.message}
+                        </FormErrorMessage>
+                    </FormControl>
+                </GridItem>
+
+                <GridItem colSpan={6}>
+                    <FormControl id="address" isInvalid={errors.address}>
+                        <FormLabel>Endereço</FormLabel>
+                        <Input id="address" type="text" {...register("address", {required: "Campo obrigatório"})} />
+                        <FormErrorMessage>
+                            {errors.address && errors.address.message}
+                        </FormErrorMessage>
+                    </FormControl>
+                </GridItem>
+
+                <GridItem colSpan={1}>
+                    <FormControl id="addressNumber" isInvalid={errors.addressNumber}>
+                        <FormLabel>Número</FormLabel>
+                        <Input id="addressNumber" type="text" {...register("addressNumber", {required: "Campo obrigatório"})} />
+                        <FormErrorMessage>
+                            {errors.addressNumber && errors.addressNumber.message}
+                        </FormErrorMessage>
+                    </FormControl>
+                </GridItem>
+
+                <GridItem colSpan={5}>
+                    <FormControl id="district" isInvalid={errors.district}>
+                        <FormLabel>Bairro</FormLabel>
+                        <Input id="district" type="text" {...register("district", {required: "Campo obrigatório"})} />
+                        <FormErrorMessage>
+                            {errors.district && errors.district.message}
+                        </FormErrorMessage>
+                    </FormControl>
+                </GridItem>
+
+                <GridItem colSpan={6}>
+                    <FormControl id="phone" isInvalid={errors.phone}>
+                        <FormLabel>Telefone</FormLabel>
+                        <Input id="phone" type="phone" {...register("phone", {required: "Campo obrigatório"})} />
+                        <FormErrorMessage>
+                            {errors.phone && errors.phone.message}
+                        </FormErrorMessage>
+                    </FormControl>
+                </GridItem>
+
+                <GridItem colSpan={6}>
+                    <FormControl id="mail" isInvalid={errors.mail}>
+                        <FormLabel>Email</FormLabel>
+                        <Input id="mail" type="email" {...register("mail", {required: "Campo obrigatório"})} />
+                        <FormErrorMessage>
+                            {errors.mail && errors.mail.message}
+                        </FormErrorMessage>
+                    </FormControl>
+                </GridItem>
+
+                <GridItem colSpan={6}>
+                    <FormControl id="socialNetwork" isInvalid={errors.socialNetwork}>
+                        <FormLabel>Facebook/Instagram (@)</FormLabel>
+                        <Input id="socialNetwork" type="text" {...register("socialNetwork", {required: "Campo obrigatório"})} />
+                        <FormErrorMessage>
+                            {errors.socialNetwork && errors.socialNetwork.message}
+                        </FormErrorMessage>
+                    </FormControl>
+                </GridItem>
+            </Grid>
         </Box>
     )
 }

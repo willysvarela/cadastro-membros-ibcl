@@ -14,7 +14,7 @@ const SignUpStep1 = props => {
                 <GridItem colSpan={6}>
                     <FormControl id="name" isInvalid={errors.name}>
                         <FormLabel>Nome</FormLabel>
-                        <Input id="name" type="text" {...register("name", {required: "Campo obrigatório"})} />
+                        <Input id="name" type="text" {...register("name", {required: "Campo obrigatório", maxLength: 256})} />
                         <FormErrorMessage>
                             {errors.name && errors.name.message}
                         </FormErrorMessage>
@@ -54,7 +54,8 @@ const SignUpStep1 = props => {
                         <FormLabel>Estado Civíl</FormLabel>
                         <Controller
                             name="civilState"
-                            control={control} 
+                            control={control}
+                            defaultValue="Casado"
                             render={({ field }) => (
                                 <Select {...field}>
                                     <option name="civilState" value="Casado">Casado</option>
@@ -69,7 +70,7 @@ const SignUpStep1 = props => {
                 <GridItem colSpan={6}>
                     <FormControl id="fatherName" isInvalid={errors.fatherName}>
                         <FormLabel>Nome do Pai</FormLabel>
-                        <Input id="fatherName" type="text" {...register("fatherName", {required: "Campo obrigatório"})} />
+                        <Input id="fatherName" type="text" {...register("fatherName", {required: "Campo obrigatório", maxLength: 256})} />
                         <FormErrorMessage>
                             {errors.fatherName && errors.fatherName.message}
                         </FormErrorMessage>
@@ -79,7 +80,7 @@ const SignUpStep1 = props => {
                 <GridItem colSpan={6}>
                     <FormControl id="motherName" isInvalid={errors.motherName}>
                         <FormLabel>Nome da Mãe</FormLabel>
-                        <Input id="motherName" type="text" {...register("motherName", {required: "Campo obrigatório"})} />
+                        <Input id="motherName" type="text" {...register("motherName", {required: "Campo obrigatório", maxLength: 256})} />
                         <FormErrorMessage>
                             {errors.motherName && errors.motherName.message}
                         </FormErrorMessage>
@@ -99,7 +100,7 @@ const SignUpStep1 = props => {
                 <GridItem colSpan={1}>
                     <FormControl id="addressNumber" isInvalid={errors.addressNumber}>
                         <FormLabel>Número</FormLabel>
-                        <Input id="addressNumber" type="text" {...register("addressNumber", {required: "Campo obrigatório"})} />
+                        <Input id="addressNumber" type="text" {...register("addressNumber", {required: "Campo obrigatório", maxLength: 16})} />
                         <FormErrorMessage>
                             {errors.addressNumber && errors.addressNumber.message}
                         </FormErrorMessage>
@@ -109,7 +110,7 @@ const SignUpStep1 = props => {
                 <GridItem colSpan={5}>
                     <FormControl id="district" isInvalid={errors.district}>
                         <FormLabel>Bairro</FormLabel>
-                        <Input id="district" type="text" {...register("district", {required: "Campo obrigatório"})} />
+                        <Input id="district" type="text" {...register("district", {required: "Campo obrigatório", maxLength: 100})} />
                         <FormErrorMessage>
                             {errors.district && errors.district.message}
                         </FormErrorMessage>
@@ -119,7 +120,7 @@ const SignUpStep1 = props => {
                 <GridItem colSpan={6}>
                     <FormControl id="phone" isInvalid={errors.phone}>
                         <FormLabel>Telefone</FormLabel>
-                        <Input id="phone" type="phone" {...register("phone", {required: "Campo obrigatório"})} />
+                        <Input id="phone" type="phone" {...register("phone", {required: "Campo obrigatório", maxLength: 30})} />
                         <FormErrorMessage>
                             {errors.phone && errors.phone.message}
                         </FormErrorMessage>
@@ -127,11 +128,11 @@ const SignUpStep1 = props => {
                 </GridItem>
 
                 <GridItem colSpan={6}>
-                    <FormControl id="mail" isInvalid={errors.mail}>
+                    <FormControl id="email" isInvalid={errors.email}>
                         <FormLabel>Email</FormLabel>
-                        <Input id="mail" type="email" {...register("mail", {required: "Campo obrigatório"})} />
+                        <Input id="email" type="email" {...register("email", {required: "Campo obrigatório", maxLength: 256})} />
                         <FormErrorMessage>
-                            {errors.mail && errors.mail.message}
+                            {errors.email && errors.email.message}
                         </FormErrorMessage>
                     </FormControl>
                 </GridItem>
@@ -139,7 +140,7 @@ const SignUpStep1 = props => {
                 <GridItem colSpan={6}>
                     <FormControl id="socialNetwork" isInvalid={errors.socialNetwork}>
                         <FormLabel>Facebook/Instagram (@)</FormLabel>
-                        <Input id="socialNetwork" type="text" {...register("socialNetwork", {required: "Campo obrigatório"})} />
+                        <Input id="socialNetwork" type="text" {...register("socialNetwork", {required: "Campo obrigatório", maxLength: 100})} />
                         <FormErrorMessage>
                             {errors.socialNetwork && errors.socialNetwork.message}
                         </FormErrorMessage>

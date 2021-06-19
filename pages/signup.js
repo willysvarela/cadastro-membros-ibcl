@@ -64,11 +64,25 @@ const SignUp = props => {
 
     const submitMemberData = async memberData => {
         console.log({toSubmit: memberData});
+        
+        const memberDTO = buildMemberDTO(memberData);
+        
         const response = await api.post("/api/member", {member: memberData});
+        updateSteps(STEPS_INDEX.FIVE);
+        setApiStatus(API_STATUS.LOADING);
+        setTimeout(() => {
+            setApiStatus(API_STATUS.SUCCESSFUL);
+        }, 5000);
+        console.log(response);
         if(response) {
-            updateSteps(STEPS_INDEX.FIVE);
-            console.log(response);
+            //TO DO: add code according response from API
         }
+    }
+
+    const buildMemberDTO = data => {
+        const howJoin = data.howJoin || data.otherHowJoin;
+        const courses = [...data.courses, data.otherCourses];
+        const member = {...data, howJoin, courses }
     }
 
     return (

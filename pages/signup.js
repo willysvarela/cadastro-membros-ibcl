@@ -8,20 +8,23 @@ import SignUpStep1 from "./../components/SignUpSteps/SignUpStep1";
 import SignUpStep2 from "./../components/SignUpSteps/SignUpStep2";
 import SignUpStep3 from "./../components/SignUpSteps/SignUpStep3";
 import SignUpRevisionStep from "./../components/SignUpSteps/SignUpRevisionStep";
+import SignUpFinalStep from "./../components/SignUpSteps/SignUpFinalStep"
 import CardHeader from '../components/CardHeader';
 import StepsBar from '../components/StepsBar';
 import StepBox from "../components/SignUpSteps/StepBox"
 
 import MemberContext from '../context/MemberContext';
 
-import { STEP_STATUS } from '../utils/constants';
+import api from "./../utils/api";
+
+import { STEP_STATUS, API_STATUS } from '../utils/constants';
 
 const STEPS = [
     {stepIndex: 0, description: "Dados", status: STEP_STATUS.DOING },
     {stepIndex: 1, description: "Ministério", status: STEP_STATUS.HOLD },
     {stepIndex: 2, description: "Habilidades", status: STEP_STATUS.HOLD },
     {stepIndex: 3, description: "Revisão", status: STEP_STATUS.HOLD },
-    {stepIndex: 4, description: "Envio", status: STEP_STATUS.HOLD }
+    {stepIndex: 4, description: "Finalizado", status: STEP_STATUS.HOLD }
 ];
 
 const STEPS_INDEX = {
@@ -29,13 +32,14 @@ const STEPS_INDEX = {
     TWO: 1,
     THREE: 2,
     FOUR: 3,
-    FIVE: 4 
+    FIVE: 4
 };
 
 const SignUp = props => {
     const [steps, setSteps] = useState(STEPS);
     const [currentStep, setCurrentStep] = useState(0);
     const [dataSteps, setDataSteps] = useState([]);
+    const [apiStatus, setApiStatus] = useState(API_STATUS.NONE)
 
     const [memberData, setMemberData] = useState({});
 
@@ -58,8 +62,13 @@ const SignUp = props => {
         setMemberData(oldData => ({...oldData, ...memberData}));
     }
 
-    const submitMemberData = memberData => {
+    const submitMemberData = async memberData => {
         console.log({toSubmit: memberData});
+        const response = await api.post("/api/member", {member: memberData});
+        if(response) {
+            updateSteps(STEPS_INDEX.FIVE);
+            console.log(response);
+        }
     }
 
     return (
@@ -94,6 +103,9 @@ const SignUp = props => {
                             nextTitle="Enviar"
                             memberData={{...memberData}}
                         />
+                        {
+                            currentStep===STEPS_INDEX.FIVE && <SignUpFinalStep status={apiStatus} /> 
+                        }
 
                     </Box>
                 </Container>

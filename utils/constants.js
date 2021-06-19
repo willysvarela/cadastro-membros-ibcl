@@ -29,3 +29,10 @@ export const FIELD_TITLE = {
     maintenanceSkills: "Habilidades em Manutenção",
     otherSkills: "Outras Habilidades"
 }
+
+export const API_STATUS = {
+    NONE: 0,
+    LOADING: 1,
+    ERROR: -1,
+    SUCCESSFUL: 2
+}

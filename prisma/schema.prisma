@@ -8,30 +8,31 @@ datasource db {
 }
 
 model Member {
-  id                 Int      @id @default(autoincrement()) @db.UnsignedInt
-  name               String   @db.VarChar(256)
-  birth              DateTime @db.Date
-  gender             String   @db.VarChar(10)
-  civil_state        String   @db.VarChar(50)
-  father_name        String?  @db.VarChar(256)
-  mother_name        String?  @db.VarChar(256)
-  address            String   @db.Text
-  district           String   @db.VarChar(100)
-  phone              String   @db.VarChar(30)
-  email              String   @db.VarChar(256)
-  social_network     String?  @db.VarChar(100)
-  how_join           String   @db.VarChar(100)
-  favorite_reunion   String   @db.VarChar(30)
-  has_ministery      Boolean  @default(false)
-  ministery          String?  @db.VarChar(100)
-  department         String   @db.VarChar(100)
-  ministery_leader   String?  @db.VarChar(256)
-  has_go             Boolean  @default(false)
-  go_leader          String?  @db.VarChar(256)
-  health_skills      String?  @db.Text
-  teach_skills       String?  @db.Text
-  social_skills      String?  @db.Text
-  maintenance_skills String?  @db.Text
-  other_skills       String?  @db.Text
-  courses            String?  @db.Text
+  id                   Int      @id @default(autoincrement()) @db.UnsignedInt
+  name                 String   @db.VarChar(256)
+  birth                DateTime @db.Date
+  gender               String   @db.VarChar(10)
+  civil_state          String   @db.VarChar(50)
+  father_name          String?  @db.VarChar(256)
+  mother_name          String?  @db.VarChar(256)
+  address              String   @db.Text
+  district             String   @db.VarChar(100)
+  phone                String   @db.VarChar(30)
+  email                String   @db.VarChar(256)
+  social_network       String?  @db.VarChar(100)
+  how_join             String   @db.VarChar(100)
+  favorite_reunion     String   @db.VarChar(30)
+  has_ministery        Boolean  @default(false)
+  ministery            String?  @db.VarChar(100)
+  intended_ministeries String?  @db.VarChar(100)
+  department           String   @db.VarChar(100)
+  ministery_leader     String?  @db.VarChar(256)
+  has_go               Boolean  @default(false)
+  go_leader            String?  @db.VarChar(256)
+  health_skills        String?  @db.Text
+  teach_skills         String?  @db.Text
+  social_skills        String?  @db.Text
+  maintenance_skills   String?  @db.Text
+  other_skills         String?  @db.Text
+  courses              String?  @db.Text
 }

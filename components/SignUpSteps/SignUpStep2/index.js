@@ -14,7 +14,7 @@ const SignUpStep2 = props => {
             </Box>
             <Grid templateColumns={{sm: "repeat(6, 1fr)", md: "repeat(6, 1fr)", }} gap={6}>
                 <GridItem colSpan={6}>
-                    <FormControl as="fieldset">
+                    <FormControl as="fieldset"  isInvalid={errors.howJoin}>
                         <FormLabel as="legend">Como se tornou membro da IBCL:</FormLabel>
                         <Controller
                             name="howJoin"
@@ -45,7 +45,7 @@ const SignUpStep2 = props => {
                 </GridItem>
 
                 <GridItem colSpan={6}>
-                    <FormControl as="fieldset">
+                    <FormControl as="fieldset" isInvalid={errors.favoriteReunion}>
                         <FormLabel as="legend">Qual culto você mais frequenta?</FormLabel>
                         <Controller
                             name="favoriteReunion"
@@ -85,11 +85,12 @@ const SignUpStep2 = props => {
                 </GridItem>
 
                 <GridItem colSpan={6}>
-                    <FormControl as="fieldset">
+                    <FormControl as="fieldset" isInvalid={errors.department}>
                         <FormLabel as="legend">De qual departamento você faz parte?</FormLabel>
                         <Controller
                             name="department"
-                            control={control} 
+                            control={control}
+                            rules={{required: true}}
                             render={({ field }) => (
                                 <RadioGroup {...field}>
                                     <HStack spacing="24px">

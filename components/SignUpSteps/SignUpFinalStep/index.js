@@ -44,7 +44,8 @@ const SignUpRevisionStep = props => {
                     props.status === API_STATUS.ERROR &&
                     <>
                     <ErrorIcon />
-                        <Text>Meu Deus do céu Berg. Não sei o que aconteceu. Por favor, tente preencher novamente. Se o erro persistir, entre em contato com a secretaria da Igreja.</Text>
+                        <Text>Por favor, tente preencher novamente. Se o erro persistir, entre em contato com a secretaria da Igreja.</Text>
+                            <Button onClick={props.onClickBack}>Preencher Novamente</Button>
                     </>
                 }
                 </Flex>

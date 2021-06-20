@@ -18,7 +18,7 @@ const SignUpStep3 = props => {
             </Box>
             <Grid templateColumns={{sm: "repeat(6, 1fr)", md: "repeat(6, 1fr)", }} gap={6}>
                 <GridItem colSpan={6}>
-                    <SkillInputGroup skillName="Saúde" skills={healthSkills} fieldName="healthSkill"/>
+                    <SkillInputGroup skillName="Saúde" skills={healthSkills} fieldName="healthSkills"/>
                 </GridItem>
                 <GridItem colSpan={6}>
                     <SkillInputGroup skillName="Ensino" skills={teachSkills} fieldName="teachSkills"/>

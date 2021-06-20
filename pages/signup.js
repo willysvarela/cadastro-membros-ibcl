@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import PropTypes from 'prop-types'
 
-import { Box } from "@chakra-ui/react"
+import { Box, Button } from "@chakra-ui/react"
 
 import Container from "./../components/Container"
 import SignUpStep1 from "./../components/SignUpSteps/SignUpStep1";
@@ -12,8 +12,6 @@ import SignUpFinalStep from "./../components/SignUpSteps/SignUpFinalStep"
 import CardHeader from '../components/CardHeader';
 import StepsBar from '../components/StepsBar';
 import StepBox from "../components/SignUpSteps/StepBox"
-
-import MemberContext from '../context/MemberContext';
 
 import api from "./../utils/api";
 
@@ -63,66 +61,82 @@ const SignUp = props => {
     }
 
     const submitMemberData = async memberData => {
-        console.log({toSubmit: memberData});
         
-        const memberDTO = buildMemberDTO(memberData);
+        const memberSanitized = sanitizeMemberData(memberData);
         
         updateSteps(STEPS_INDEX.FIVE);
         setApiStatus(API_STATUS.LOADING);
-        setTimeout(() => {
-            setApiStatus(API_STATUS.SUCCESSFUL);
-        }, 5000);
-        //const response = await api.post("/api/member", {member: memberData});
-        // console.log(response);
-        // if(response) {
-        //     //TO DO: add code according response from API
+        try {
+
+            const response = await api.post("/api/member", { memberData: memberSanitized} );
+
+            if(response.status === 200){
+                setApiStatus(API_STATUS.SUCCESSFUL);
+             } else setApiStatus(API_STATUS.ERROR);
+
+        }catch (e) {
+            console.log(e);
+            setApiStatus(API_STATUS.ERROR);
+        }
     }
 
-    const buildMemberDTO = data => {
-        const howJoin = data.howJoin || data.otherHowJoin;
-        const courses = [...data.courses, data.otherCourses];
-        const member = {...data, howJoin, courses }
+    const sanitizeMemberData = data => {
+        const coursesFiltered = data.courses?.filter(course => course);
+        
+        const courses = coursesFiltered ? [...coursesFiltered, data.otherCourses] : [data.otherCourses];
+        const healthSkills = data.healthSkills?.filter(skill => skill);
+        const teachSkills = data.teachSkills?.filter(skill => skill);
+        const socialSkills = data.socialSkills?.filter(skill => skill); 
+        const maintenanceSkills = data.maintenanceSkills?.filter(skill => skill);
+        const howJoin = data.howJoin !== "" && data.howJoin !== "Outro" ? data.howJoin : data.otherHowJoin;
+        let member = data;
+        delete member.courses;
+        delete member.otherCourses;
+        delete member.healthSkills;
+        delete member.socialSkills;
+        delete member.maintenanceSkills;
+        delete member.howJoin;
+        delete member.otherHowJoin;
+        return {...member, courses, healthSkills, teachSkills, socialSkills, maintenanceSkills, howJoin }
     }
 
     return (
-        <MemberContext.Provider>
-                <Container>
-                    <Box padding="30px">
-                        <CardHeader />
-                        <Box marginTop="30px"/>
-                        <StepsBar steps={steps} />
-                        <Box marginTop="30px"/>
-                        <StepBox
-                            onClickNext={(memberData) => updateSteps(STEPS_INDEX.TWO, memberData)}
-                            show={ currentStep===STEPS_INDEX.ONE }
-                            component={SignUpStep1} />
+        <Container>
+            <Box padding="30px">
+                <CardHeader />
+                <Box marginTop="30px"/>
+                <StepsBar steps={steps} />
+                <Box marginTop="30px"/>
+                <StepBox
+                    onClickNext={(memberData) => updateSteps(STEPS_INDEX.TWO, memberData)}
+                    show={ currentStep===STEPS_INDEX.ONE }
+                    component={SignUpStep1} />
 
-                        <StepBox
-                            onClickNext={(memberData) => updateSteps(STEPS_INDEX.THREE, memberData)}
-                            onClickBack={() => updateSteps(STEPS_INDEX.ONE)}
-                            show={ currentStep===STEPS_INDEX.TWO }
-                            component={SignUpStep2} />
+                <StepBox
+                    onClickNext={(memberData) => updateSteps(STEPS_INDEX.THREE, memberData)}
+                    onClickBack={() => updateSteps(STEPS_INDEX.ONE)}
+                    show={ currentStep===STEPS_INDEX.TWO }
+                    component={SignUpStep2} />
 
-                        <StepBox 
-                            onClickNext={(memberData) => updateSteps(STEPS_INDEX.FOUR, memberData)}
-                            onClickBack={() => updateSteps(currentStep-1)}
-                            show={ currentStep===STEPS_INDEX.THREE }
-                            component={SignUpStep3} />
-                        <StepBox
-                            onClickNext={() => submitMemberData(memberData)}
-                            onClickBack={() => updateSteps(currentStep-1)}
-                            show={ currentStep===STEPS_INDEX.FOUR }
-                            component={SignUpRevisionStep} 
-                            nextTitle="Enviar"
-                            memberData={{...memberData}}
-                        />
-                        {
-                            currentStep===STEPS_INDEX.FIVE && <SignUpFinalStep status={apiStatus} /> 
-                        }
+                <StepBox 
+                    onClickNext={(memberData) => updateSteps(STEPS_INDEX.FOUR, memberData)}
+                    onClickBack={() => updateSteps(currentStep-1)}
+                    show={ currentStep===STEPS_INDEX.THREE }
+                    component={SignUpStep3} />
+                <StepBox
+                    onClickNext={() => submitMemberData(memberData)}
+                    onClickBack={() => updateSteps(currentStep-1)}
+                    show={ currentStep===STEPS_INDEX.FOUR }
+                    component={SignUpRevisionStep} 
+                    nextTitle="Enviar"
+                    memberData={{...memberData}}
+                />
+                {
+                    currentStep===STEPS_INDEX.FIVE && <SignUpFinalStep status={apiStatus} onClickBack={() => updateSteps(STEPS_INDEX.ONE)}/> 
+                }
 
-                    </Box>
-                </Container>
-        </MemberContext.Provider>
+            </Box>
+        </Container>
     )
 }
 

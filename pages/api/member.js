@@ -15,17 +15,17 @@ const schemaMember = Joi.object({
     addressNumber: Joi.string().required(),
     district: Joi.string().required(),
     phone: Joi.string().required(),
-    email: Joi.string().email().required(),
+    email: Joi.string(),
     socialNetwork: Joi.string(),
     department: Joi.string().required(),
-    goLeader: Joi.string(),
+    goLeader: Joi.string().allow(''),
     gender: Joi.string().valid('M','F').required(),
     howJoin: Joi.string().required(),
-    ministries: Joi.string(),
+    ministries: Joi.string().allow(''),
     intendedMinistries: Joi.string().allow(''),
     favoriteReunion: Joi.string().required(),
-    otherSkills: Joi.string(),
-    courses: Joi.array().items(Joi.string()),
+    otherSkills: Joi.string().allow(''),
+    courses: Joi.array().items(Joi.string().allow('')),
     healthSkills: Joi.array().items(Joi.string()),
     teachSkills: Joi.array().items(Joi.string()),
     socialSkills: Joi.array().items(Joi.string()),
@@ -42,12 +42,14 @@ const handler = nc()
   .post(async (req, res) => {
 
     try {
-      var body = JSON.parse(req.body)
+      var body = req.body
       var memberData = body.memberData
       var validation = schemaMember.validate(memberData);
       if (validation.error) {
+        console.log(validation.error)
         res.status(406).json(validation.error.details);
       } else {
+        console.log("here");
         var newMember = {}
         newMember.name = memberData.name;
         newMember.birth = new Date(memberData.birthDate)
@@ -70,6 +72,7 @@ const handler = nc()
         if (memberData.ministries) {
           newMember.has_ministery = true
           newMember.ministery = memberData.ministries
+          newMember.intended_ministeries = memberData.intendedMinistries
         } else {
           newMember.has_ministery = false
         }
@@ -110,6 +113,7 @@ const handler = nc()
       }
     }
     catch (err) {
+      console.log(err);
       res.status(500)
     }
 

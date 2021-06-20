@@ -40,8 +40,8 @@ const SignUpStep1 = props => {
                             render={({ field }) => (
                                 <RadioGroup {...field}>
                                     <Stack spacing="24px">
-                                        <Radio name="gender" value="Masculino">Masculino</Radio>
-                                        <Radio name="gender" value="Feminino">Feminino</Radio>
+                                        <Radio name="gender" value="M">Masculino</Radio>
+                                        <Radio name="gender" value="F">Feminino</Radio>
                                     </Stack>
                                 </RadioGroup>
                             )}

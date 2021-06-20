@@ -1,11 +1,21 @@
 Project to manage subscriptions on Igreja Batista Central Leste
 ## Getting Started
 
-First, run the development server:
+### Dependencies:
+- [node](https://nodejs.org/)
+- [yarn](https://yarnpkg.com/)
+- [next.js](https://nextjs.org/)
+- [mysql](https://dev.mysql.com/)
+
+### Running:
+Install yarn project dependencies:
 
 ```bash
-npm run dev
-# or
+yarn
+```
+Then, you can run the development server:
+
+```bash
 yarn dev
 ```
 

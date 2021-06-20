@@ -70,7 +70,7 @@ const SignUpStep1 = props => {
                 <GridItem colSpan={6}>
                     <FormControl id="fatherName" isInvalid={errors.fatherName}>
                         <FormLabel>Nome do Pai</FormLabel>
-                        <Input id="fatherName" type="text" {...register("fatherName", {required: "Campo obrigatório", maxLength: 256})} />
+                        <Input id="fatherName" type="text" {...register("fatherName", {maxLength: 256})} />
                         <FormErrorMessage>
                             {errors.fatherName && errors.fatherName.message}
                         </FormErrorMessage>

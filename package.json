@@ -5,7 +5,8 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "start": "next start"
+    "start": "next start",
+    "test": "jest --watch"
   },
   "dependencies": {
     "@chakra-ui/icons": "^1.0.13",
@@ -26,6 +27,7 @@
   },
   "devDependencies": {
     "eslint": "^7.28.0",
-    "eslint-config-next": "^11.0.0"
+    "eslint-config-next": "^11.0.0",
+    "jest": "^27.0.4"
   }
 }

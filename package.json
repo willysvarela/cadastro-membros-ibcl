@@ -14,6 +14,7 @@
     "@emotion/react": "^11",
     "@emotion/styled": "^11",
     "@prisma/client": "2.25.0",
+    "@supabase/storage-js": "^2.0.0",
     "axios": "^0.21.1",
     "framer-motion": "^4",
     "joi": "^17.4.0",

@@ -3,12 +3,12 @@ generator client {
 }
 
 datasource db {
-  provider = "mysql"
+  provider = "postgresql"
   url      = env("DATABASE_URL")
 }
 
 model Member {
-  id                   Int      @id @default(autoincrement()) @db.UnsignedInt
+  id                   Int      @id @default(autoincrement())
   name                 String   @db.VarChar(256)
   birth                DateTime @db.Date
   gender               String   @db.VarChar(10)
@@ -35,4 +35,5 @@ model Member {
   maintenance_skills   String?  @db.Text
   other_skills         String?  @db.Text
   courses              String?  @db.Text
+  photo_url              String?  @db.Text
 }

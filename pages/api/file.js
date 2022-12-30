@@ -13,8 +13,8 @@ const handler = nc().post((req, res) => {
   form.keepExtensions = true;
   form.parse(req, async (err, fields, files) => {
     console.log({ files });
-    const rawData = fs.readFileSync(files.file.filepath);
-    const result = await saveOnStorage(files.file, rawData);
+    const rawData = fs.readFileSync(files.image.filepath);
+    const result = await saveOnStorage(files.image, rawData);
     const publicUrl = getPublicUrl(result.path);
     res.status(200).json(publicUrl);
   });

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   Box,
   Text,
@@ -15,9 +15,15 @@ import {
   Radio,
   Select,
 } from "@chakra-ui/react";
-import { Controller, useFormContext, useFormState } from "react-hook-form";
+import PhotoCapture from "../../PhotoCapture";
+import {
+  Controller,
+  useFormContext,
+  useFormState,
+  useFieldArray,
+} from "react-hook-form";
 
-const SignUpStep1 = (props) => {
+const SignUpStepBasicData = (props) => {
   const { register, control } = useFormContext();
   const { errors } = useFormState();
 
@@ -28,20 +34,6 @@ const SignUpStep1 = (props) => {
         templateColumns={{ sm: "repeat(6, 1fr)", md: "repeat(6, 1fr)" }}
         gap={6}
       >
-        <GridItem colSpan={6}>
-          <FormControl id="name" isInvalid={errors.name}>
-            <FormLabel>Nome</FormLabel>
-            <input
-              id="myFileInput"
-              type="file"
-              accept="image/*;capture=camera"
-            />
-            <FormErrorMessage>
-              {errors.name && errors.name.message}
-            </FormErrorMessage>
-          </FormControl>
-        </GridItem>
-
         <GridItem colSpan={6}>
           <FormControl id="name" isInvalid={errors.name}>
             <FormLabel>Nome</FormLabel>
@@ -253,4 +245,4 @@ const SignUpStep1 = (props) => {
   );
 };
 
-export default SignUpStep1;
+export default SignUpStepBasicData;

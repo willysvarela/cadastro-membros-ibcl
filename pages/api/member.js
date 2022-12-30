@@ -30,19 +30,19 @@ const schemaMember = Joi.object({
   teachSkills: Joi.array().items(Joi.string()),
   socialSkills: Joi.array().items(Joi.string()),
   maintenanceSkills: Joi.array().items(Joi.string()),
-  photo: Joi.string(),
+  photoUrl: Joi.string(),
 }).required();
 
 const handler = nc()
   .get(async (req, res) => {
     const allUsers = await Prisma.member.findMany();
-    console.log(allUsers);
     res.status(200).json(allUsers);
   })
   .post(async (req, res) => {
     try {
       var body = req.body;
       var memberData = body.memberData;
+      console.log({ memberData });
       var validation = schemaMember.validate(memberData);
       if (validation.error) {
         console.log(validation.error);
@@ -98,7 +98,7 @@ const handler = nc()
         if (memberData.courses) {
           newMember.courses = memberData.courses.toString();
         }
-
+        newMember.photo_url = memberData.photoUrl;
         try {
           var user = await Prisma.member.create({
             data: newMember,

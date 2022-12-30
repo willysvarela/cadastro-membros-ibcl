@@ -8,7 +8,7 @@ const teachSkills = ["Professor de Português", "Idiomas", "geografia", "Música
 const socialSkills = ["Assistência Social", "Advogado", "Administrador", "Contabilidade"];
 const maintenanceSkills = ["Eletricista", "Soldador", "Mecânico", "Marceneiro", "Carpinteiro", "Pedreiro", "Pintor"];
 
-const SignUpStep3 = props => {
+const SignUpStepSkillsData = props => {
     const { register, control } = useFormContext();
     const { errors } = useFormState();
 
@@ -72,4 +72,4 @@ const SkillInputGroup = props => {
 }
 
 
-export default SignUpStep3
+export default SignUpStepSkillsData

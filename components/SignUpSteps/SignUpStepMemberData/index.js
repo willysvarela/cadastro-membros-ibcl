@@ -4,7 +4,7 @@ import { Controller, useFormContext, useFormState } from "react-hook-form";
 
 const COURSES = ["Leite", "Pão", "Carne", "Peixe", "Introd. à Vida Cristã", "Um Com Deus",  "Introd. à Bíblia", "8 Qualidades de Cristo"];
 
-const SignUpStep2 = props => {
+const SignUpStepMemberData = props => {
     const { register, control } = useFormContext();
     const { errors } = useFormState();
 
@@ -149,4 +149,4 @@ const SignUpStep2 = props => {
     )
 }
 
-export default SignUpStep2
+export default SignUpStepMemberData

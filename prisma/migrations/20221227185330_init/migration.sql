@@ -1,0 +1,33 @@
+-- CreateTable
+CREATE TABLE "Member" (
+    "id" SERIAL NOT NULL,
+    "name" VARCHAR(256) NOT NULL,
+    "birth" DATE NOT NULL,
+    "gender" VARCHAR(10) NOT NULL,
+    "civil_state" VARCHAR(50) NOT NULL,
+    "father_name" VARCHAR(256),
+    "mother_name" VARCHAR(256),
+    "address" TEXT NOT NULL,
+    "district" VARCHAR(100) NOT NULL,
+    "phone" VARCHAR(30) NOT NULL,
+    "email" VARCHAR(256) NOT NULL,
+    "social_network" VARCHAR(100),
+    "how_join" VARCHAR(100) NOT NULL,
+    "favorite_reunion" VARCHAR(30) NOT NULL,
+    "has_ministery" BOOLEAN NOT NULL DEFAULT false,
+    "ministery" VARCHAR(100),
+    "intended_ministeries" VARCHAR(100),
+    "department" VARCHAR(100) NOT NULL,
+    "ministery_leader" VARCHAR(256),
+    "has_go" BOOLEAN NOT NULL DEFAULT false,
+    "go_leader" VARCHAR(256),
+    "health_skills" TEXT,
+    "teach_skills" TEXT,
+    "social_skills" TEXT,
+    "maintenance_skills" TEXT,
+    "other_skills" TEXT,
+    "courses" TEXT,
+    "photo_url" TEXT,
+
+    PRIMARY KEY ("id")
+);

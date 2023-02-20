@@ -14,7 +14,7 @@ const STATUS_COLORS = {
   DOING: "blue.200",
 };
 
-const StepsBar = (props) => {
+function StepsBar(props) {
   const [steps, setSteps] = useState([]);
 
   useEffect(() => {
@@ -26,12 +26,10 @@ const StepsBar = (props) => {
 
   return (
     <Flex align="center">
-      {steps.map((step, i) => {
-        return renderStep(step, i, steps);
-      })}
+      {steps.map((step, i) => renderStep(step, i, steps))}
     </Flex>
   );
-};
+}
 
 const renderStep = (step, index, steps) => {
   const barColor =
@@ -55,11 +53,11 @@ const renderStep = (step, index, steps) => {
       </Flex>
       {!isLastStep && (
         <Box
-          width={barWidth + "%"}
+          width={`${barWidth  }%`}
           height="1px"
           backgroundColor={barColor}
           marginTop="16px"
-        ></Box>
+         />
       )}
     </>
   );

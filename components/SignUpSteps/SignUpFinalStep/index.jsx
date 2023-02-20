@@ -12,14 +12,14 @@ import {
   Button,
 } from "@chakra-ui/react";
 
+import ReactLoading from "react-loading";
 import ErrorIcon from "../../IconsAnimated/ErrorIcon";
 import SuccessfulIcon from "../../IconsAnimated/SuccessfulIcon";
 
 import { API_STATUS } from "../../../utils/constants";
 
-import ReactLoading from "react-loading";
 
-const SignUpRevisionStep = (props) => {
+function SignUpRevisionStep(props) {
   return (
     <Box
       marginTop="20px"
@@ -37,7 +37,7 @@ const SignUpRevisionStep = (props) => {
         <Heading size="md" textAlign="center">
           Cadastro Finalizado
         </Heading>
-        {props.status === API_STATUS.NONE && <Box></Box>}
+        {props.status === API_STATUS.NONE && <Box />}
         {props.status === API_STATUS.LOADING && (
           <>
             <Flex justifyContent="center">
@@ -81,7 +81,7 @@ const SignUpRevisionStep = (props) => {
       </Flex>
     </Box>
   );
-};
+}
 
 SignUpRevisionStep.propTypes = {};
 

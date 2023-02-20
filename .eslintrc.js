@@ -13,8 +13,8 @@ module.exports = {
   },
   plugins: ['react'],
   rules: {
-    'react/prop-types': 'ignore',
-    'react/jsx-props-no-spreading': 'ignore',
-    'no-nested-ternary': 'ignore'
+    'react/prop-types': 'off',
+    'react/jsx-props-no-spreading': 'off',
+    'no-nested-ternary': 'off'
   }
 };

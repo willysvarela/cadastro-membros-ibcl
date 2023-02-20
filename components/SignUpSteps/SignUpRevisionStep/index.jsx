@@ -7,7 +7,7 @@ import StepsBar, {STEP_STATUS} from '../../StepsBar'
 
 import { FIELD_TITLE } from '../../../utils/constants'
 
-const SignUpRevisionStep = props => {
+function SignUpRevisionStep(props) {
     return (
         <Box>
             <Heading size="md" textAlign="center">Resumo do preenchimento</Heading>
@@ -21,7 +21,7 @@ const SignUpRevisionStep = props => {
                                 <Text>{
                                     !Array.isArray(props.memberData[fieldTitle]) ? 
                                     props.memberData[fieldTitle] :
-                                    props.memberData[fieldTitle].filter(value => value).map((value, i) => (value + ", "))
+                                    props.memberData[fieldTitle].filter(value => value).map((value, i) => (`${value  }, `))
                                 }</Text>
                             </HStack>
                         </GridItem>

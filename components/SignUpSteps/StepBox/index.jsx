@@ -3,7 +3,7 @@ import { FormProvider, useForm } from "react-hook-form";
 
 import { Box, Button, Flex } from "@chakra-ui/react";
 
-const StepBox = ({ component: Component, ...props }) => {
+function StepBox({ component: Component, ...props }) {
   const [isProceedEnabled, setIsProceedEnabled] = useState(true);
   const methods = useForm();
 
@@ -44,7 +44,7 @@ const StepBox = ({ component: Component, ...props }) => {
             {props.onClickBack ? (
               <Button onClick={handleClickBack}>Anterior</Button>
             ) : (
-              <Box></Box>
+              <Box />
             )}
             {props.onClickNext && (
               <Button
@@ -60,6 +60,6 @@ const StepBox = ({ component: Component, ...props }) => {
       </FormProvider>
     </Box>
   );
-};
+}
 
 export default StepBox;

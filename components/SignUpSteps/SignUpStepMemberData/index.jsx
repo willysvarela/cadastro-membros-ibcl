@@ -4,14 +4,13 @@ import { Controller, useFormContext, useFormState } from "react-hook-form";
 
 const COURSES = ["Leite", "Pão", "Carne", "Peixe", "Introd. à Vida Cristã", "Um Com Deus",  "Introd. à Bíblia", "8 Qualidades de Cristo"];
 
-const SignUpStepMemberData = props => {
+function SignUpStepMemberData(props) {
     const { register, control } = useFormContext();
     const { errors } = useFormState();
 
     return (
         <Box>
-            <Box>
-            </Box>
+            <Box />
             <Grid templateColumns={{sm: "repeat(6, 1fr)", md: "repeat(6, 1fr)", }} gap={6}>
                 <GridItem colSpan={6}>
                     <FormControl as="fieldset"  isInvalid={errors.howJoin}>

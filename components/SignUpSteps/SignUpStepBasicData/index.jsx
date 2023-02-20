@@ -15,21 +15,21 @@ import {
   Radio,
   Select,
 } from "@chakra-ui/react";
-import PhotoCapture from "../../PhotoCapture";
 import {
   Controller,
   useFormContext,
   useFormState,
   useFieldArray,
 } from "react-hook-form";
+import PhotoCapture from "../../PhotoCapture";
 
-const SignUpStepBasicData = (props) => {
+function SignUpStepBasicData(props) {
   const { register, control } = useFormContext();
   const { errors } = useFormState();
 
   return (
     <Box>
-      <Box></Box>
+      <Box />
       <Grid
         templateColumns={{ sm: "repeat(6, 1fr)", md: "repeat(6, 1fr)" }}
         gap={6}
@@ -243,6 +243,6 @@ const SignUpStepBasicData = (props) => {
       </Grid>
     </Box>
   );
-};
+}
 
 export default SignUpStepBasicData;

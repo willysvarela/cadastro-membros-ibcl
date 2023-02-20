@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 
 import { Box, Text } from '@chakra-ui/layout'
 
-const CardHeader = props => {
+function CardHeader(props) {
     return (
         <Box>
             <Box textAlign="center">

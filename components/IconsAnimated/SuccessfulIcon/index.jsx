@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 
-const ErrorIcon = (props) => {
+function ErrorIcon(props) {
   return (
     <div className="success-animation">
       <svg
@@ -18,7 +18,7 @@ const ErrorIcon = (props) => {
       </svg>
     </div>
   );
-};
+}
 
 ErrorIcon.propTypes = {};
 

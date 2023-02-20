@@ -14,7 +14,7 @@ const DEMO_STEPS = [
     {stepIndex: 4, description: "Finalização", status: STEP_STATUS.HOLD }
 ];
 
-const SignUpInitialStep = props => {
+function SignUpInitialStep(props) {
     return (
         <Box textAlign="center">
             <Box>

@@ -1,6 +1,4 @@
-/* eslint-disable @next/next/no-img-element */
-/* eslint-disable react/jsx-key */
-import React, { useEffect, useMemo, useState } from 'react';
+import React, { useEffect, useMemo } from 'react';
 import {
   useTable,
   useSortBy,
@@ -8,20 +6,8 @@ import {
   useGlobalFilter,
   useColumnOrder
 } from 'react-table';
-import useSWR from 'swr';
 import matchSorter from 'match-sorter';
-import {
-  Table,
-  TableCaption,
-  TableContainer,
-  Tbody,
-  Td,
-  Th,
-  Thead,
-  Tr
-} from '@chakra-ui/react';
 import { COLUMNS, COLUMNS_ORDER } from './columns';
-
 import MemberCell from './MemberCell';
 
 // Define a default UI for filtering
@@ -47,10 +33,7 @@ function fuzzyTextFilterFn(rows, id, filterValue) {
 
 fuzzyTextFilterFn.autoRemove = (val) => !val;
 
-function MembersTable() {
-  const fetcher = (...args) => fetch(...args).then((res) => res.json());
-  const { data, error } = useSWR('/api/member', fetcher);
-
+function MembersTable({ onSelectMember, data }) {
   const tableData = useMemo(() => data, [data]);
 
   const columns = useMemo(
@@ -62,24 +45,7 @@ function MembersTable() {
     [data]
   );
 
-  const filterTypes = React.useMemo(
-    () => ({
-      // Add a new fuzzyTextFilterFn filter type.
-      fuzzyText: fuzzyTextFilterFn,
-      // Or, override the default text filter to use
-      // "startWith"
-      text: (rows, id, filterValue) =>
-        rows.filter((row) => {
-          const rowValue = row.values[id];
-          return rowValue !== undefined
-            ? String(rowValue)
-                .toLowerCase()
-                .startsWith(String(filterValue).toLowerCase())
-            : true;
-        })
-    }),
-    []
-  );
+  useEffect(() => {}, []);
 
   const defaultColumn = React.useMemo(
     () => ({
@@ -97,55 +63,62 @@ function MembersTable() {
     useSortBy
   );
 
-  const {
-    getTableProps,
-    headerGroups,
-    rows,
-    prepareRow,
-    setColumnOrder
-    /* getTableBodyProps,
-        state,
-        visibleColumns,
-        preGlobalFilteredRows,
-        setGlobalFilter,
-        */
-  } = tableInstance;
+  const { getTableProps, headerGroups, rows, prepareRow, setColumnOrder } =
+    tableInstance;
 
   useEffect(() => {
     setColumnOrder(COLUMNS_ORDER);
   }, []);
 
+  const handleSelectRow = (row) => {
+    onSelectMember(row.values);
+  };
+
   return (
-    <TableContainer>
-      <Table {...getTableProps()}>
-        <TableCaption>Imperial to metric conversion factors</TableCaption>
-        <Thead>
-          {headerGroups.map((headerGroup) => (
-            <Tr {...headerGroup.getHeaderGroupProps()}>
-              {headerGroup.headers.map((column) => (
-                <Th {...column.getHeaderProps(column.getSortByToggleProps())}>
-                  {column.render('Header')}
-                  {column.isSorted ? (column.isSortedDesc ? ' 🔽' : ' 🔼') : ''}
-                  <div>{column.canFilter ? column.render('Filter') : null}</div>
-                </Th>
-              ))}
-            </Tr>
-          ))}
-        </Thead>
-        <Tbody>
-          {rows.map((row) => {
-            prepareRow(row);
-            return (
-              <Tr {...row.getRowProps()}>
-                {row.cells.map((cell) => (
-                  <MemberCell cell={cell} />
+    <div>
+      <div className="overflow-x-auto">
+        <table className="table table-compact w-full" {...getTableProps()}>
+          <thead>
+            {headerGroups.map((headerGroup) => (
+              <tr {...headerGroup.getHeaderGroupProps()}>
+                {headerGroup.headers.map((column) => (
+                  <th {...column.getHeaderProps(column.getSortByToggleProps())}>
+                    {column.render('Header')}
+                    {column.isSorted
+                      ? column.isSortedDesc
+                        ? ' 🔽'
+                        : ' 🔼'
+                      : ''}
+                    <div>
+                      {column.canFilter ? column.render('Filter') : null}
+                    </div>
+                  </th>
                 ))}
-              </Tr>
-            );
-          })}
-        </Tbody>
-      </Table>
-    </TableContainer>
+              </tr>
+            ))}
+          </thead>
+          <tbody>
+            {rows.map((row) => {
+              prepareRow(row);
+              return (
+                <tr
+                  className="[&>td]:hover:bg-base-200"
+                  key={row.id}
+                  {...row.getRowProps()}
+                  onClick={() => {
+                    handleSelectRow(row);
+                  }}
+                >
+                  {row.cells.map((cell) => (
+                    <MemberCell cell={cell} key={cell.column.id} />
+                  ))}
+                </tr>
+              );
+            })}
+          </tbody>
+        </table>
+      </div>
+    </div>
   );
 }
 

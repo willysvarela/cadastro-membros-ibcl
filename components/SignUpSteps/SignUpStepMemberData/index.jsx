@@ -1,10 +1,10 @@
 import React from "react"
-import { Flex, Box, Text, FormControl, FormLabel, FormErrorMessage, FormHelperText, Input, SimpleGrid, Grid, GridItem, RadioGroup, HStack, VStack, Stack, Radio, Checkbox } from "@chakra-ui/react"
+import { Flex, Box, FormControl, FormLabel, FormErrorMessage, Input, Grid, GridItem, RadioGroup, HStack, Radio, Checkbox } from "@chakra-ui/react"
 import { Controller, useFormContext, useFormState } from "react-hook-form";
 
 const COURSES = ["Leite", "Pão", "Carne", "Peixe", "Introd. à Vida Cristã", "Um Com Deus",  "Introd. à Bíblia", "8 Qualidades de Cristo"];
 
-function SignUpStepMemberData(props) {
+function SignUpStepMemberData() {
     const { register, control } = useFormContext();
     const { errors } = useFormState();
 

@@ -9,7 +9,7 @@ const maintenanceSkills = ["Eletricista", "Soldador", "Mecânico", "Marceneiro",
 
 function SignUpStepSkillsData() {
     const { register } = useFormContext();
-    //const { errors } = useFormState();
+    // const { errors } = useFormState();
 
     return (
         <Box>

@@ -1,12 +1,11 @@
-/* eslint-disable @next/next/no-img-element */
-import React, { useEffect, useRef, useState } from "react";
-import useDisplayImage from "../../hooks/useDisplayImage";
-import styled from "@emotion/styled";
-import { Button, Flex, Text } from "@chakra-ui/react";
-import { CheckIcon } from "@chakra-ui/icons";
-import api from "../../utils/api";
-import ReactLoading from "react-loading";
-import { useFormContext } from "react-hook-form";
+import React, { useRef, useState } from 'react';
+import styled from '@emotion/styled';
+import { Button, Flex, Text } from '@chakra-ui/react';
+import { CheckIcon } from '@chakra-ui/icons';
+import ReactLoading from 'react-loading';
+import { useFormContext } from 'react-hook-form';
+import api from '../../utils/api';
+import useDisplayImage from '../../hooks/useDisplayImage';
 
 const StyledImage = styled.img`
   height: 300px;
@@ -26,14 +25,14 @@ const StyledButtonContainer = styled.div`
   margin-top: 40px;
 `;
 
-const PhotoCapture = ({ onConfirm, onCancel }) => {
+function PhotoCapture({ onConfirm, onCancel, defaultImage }) {
   const inputRef = useRef(null);
   const { result, uploader } = useDisplayImage();
-  const [image, setImage] = useState("");
-  const [imagePath, setImagePath] = useState("");
+  const [image, setImage] = useState(defaultImage || '');
+  const [imagePath, setImagePath] = useState('');
   const [isLoading, setIsLoading] = useState(false);
   const { register, setValue } = useFormContext();
-  register("photoUrl", { required: true });
+  register('photoUrl', { required: true });
   const isImageUploaded = !!imagePath && !isLoading;
 
   const handleSelectImage = (e) => {
@@ -46,27 +45,27 @@ const PhotoCapture = ({ onConfirm, onCancel }) => {
     inputRef.current.click();
   };
   const handleConfirmation = () => {
-    //upload Image
+    // upload Image
     setIsLoading(true);
     const formData = new FormData();
-    formData.append("image", image);
+    formData.append('image', image);
 
     api
-      .post("/api/file", formData, {
-        headers: { "Content-Type": "multpart/form-data" },
+      .post('/api/file', formData, {
+        headers: { 'Content-Type': 'multpart/form-data' }
       })
       .then((res) => {
         setIsLoading(false);
-        console.log({ data: res.data });
-        setImagePath(res.data); //maybe remove this state?
-        setValue("photoUrl", res.data);
+        setImagePath(res.data); // maybe remove this state?
+        setValue('photoUrl', res.data);
         onConfirm(imagePath);
       })
       .catch((err) => {
         setIsLoading(false);
         setImagePath(null);
+        console.error(err);
       });
-    //set image url to imagePath
+    // set image url to imagePath
   };
 
   return (
@@ -79,7 +78,7 @@ const PhotoCapture = ({ onConfirm, onCancel }) => {
         onChange={handleSelectImage}
       />
 
-      {image && <StyledImage src={result} alt="sd" />}
+      {image && <StyledImage src={result || defaultImage} alt="sd" />}
       <StyledButtonContainer>
         <Button
           colorScheme="green"
@@ -117,6 +116,6 @@ const PhotoCapture = ({ onConfirm, onCancel }) => {
       )}
     </StyledDiv>
   );
-};
+}
 
 export default PhotoCapture;

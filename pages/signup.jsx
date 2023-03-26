@@ -1,22 +1,20 @@
-import React, { useEffect, useState } from "react";
-import PropTypes from "prop-types";
+import React, { useEffect, useState } from 'react';
+import { Box } from '@chakra-ui/react';
 
-import { Box, Button } from "@chakra-ui/react";
+import Container from '../components/Container';
+import SignUpStepBasicData from '../components/SignUpSteps/SignUpStepBasicData';
+import SignUpStepMemberData from '../components/SignUpSteps/SignUpStepMemberData';
+import SignUpStepSkillsData from '../components/SignUpSteps/SignUpStepSkillsData';
+import SignUpStepPhoto from '../components/SignUpSteps/SignUpStepPhoto';
+import SignUpRevisionStep from '../components/SignUpSteps/SignUpRevisionStep';
+import SignUpFinalStep from '../components/SignUpSteps/SignUpFinalStep';
+import CardHeader from '../components/CardHeader';
+import StepsBar from '../components/StepsBar';
+import StepBox from '../components/SignUpSteps/StepBox';
 
-import Container from "./../components/Container";
-import SignUpStepBasicData from "./../components/SignUpSteps/SignUpStepBasicData";
-import SignUpStepMemberData from "../components/SignUpSteps/SignUpStepMemberData";
-import SignUpStepSkillsData from "./../components/SignUpSteps/SignUpStepSkillsData";
-import SignUpStepPhoto from "../components/SignUpSteps/SignUpStepPhoto";
-import SignUpRevisionStep from "./../components/SignUpSteps/SignUpRevisionStep";
-import SignUpFinalStep from "./../components/SignUpSteps/SignUpFinalStep";
-import CardHeader from "../components/CardHeader";
-import StepsBar from "../components/StepsBar";
-import StepBox from "../components/SignUpSteps/StepBox";
+import api from '../utils/api';
 
-import api from "./../utils/api";
-
-import { STEP_STATUS, API_STATUS } from "../utils/constants";
+import { STEP_STATUS, API_STATUS } from '../utils/constants';
 
 const STEPS_INDEX = {
   ONE: 0,
@@ -24,43 +22,43 @@ const STEPS_INDEX = {
   THREE: 2,
   FOUR: 3,
   FIVE: 4,
-  SIX: 5,
+  SIX: 5
 };
 
 const STEPS = [
   {
     stepIndex: STEPS_INDEX.ONE,
-    description: "Dados",
-    status: STEP_STATUS.DOING,
+    description: 'Dados',
+    status: STEP_STATUS.DOING
   },
   {
     stepIndex: STEPS_INDEX.TWO,
-    description: "Ministério",
-    status: STEP_STATUS.HOLD,
+    description: 'Ministério',
+    status: STEP_STATUS.HOLD
   },
   {
     stepIndex: STEPS_INDEX.THREE,
-    description: "Habilidades",
-    status: STEP_STATUS.HOLD,
+    description: 'Habilidades',
+    status: STEP_STATUS.HOLD
   },
   {
     stepIndex: STEPS_INDEX.FOUR,
-    description: "Foto",
-    status: STEP_STATUS.HOLD,
+    description: 'Foto',
+    status: STEP_STATUS.HOLD
   },
   {
     stepIndex: STEPS_INDEX.FIVE,
-    description: "Revisão",
-    status: STEP_STATUS.HOLD,
+    description: 'Revisão',
+    status: STEP_STATUS.HOLD
   },
   {
     stepIndex: STEPS_INDEX.SIX,
-    description: "Finalizado",
-    status: STEP_STATUS.HOLD,
-  },
+    description: 'Finalizado',
+    status: STEP_STATUS.HOLD
+  }
 ];
 
-const SignUp = (props) => {
+function SignUp(props) {
   const [steps, setSteps] = useState(STEPS);
   const [currentStep, setCurrentStep] = useState(STEPS_INDEX.FOUR);
   const [dataSteps, setDataSteps] = useState([]);
@@ -97,8 +95,8 @@ const SignUp = (props) => {
     updateSteps(STEPS_INDEX.SIX);
     setApiStatus(API_STATUS.LOADING);
     try {
-      const response = await api.post("/api/member", {
-        memberData: memberSanitized,
+      const response = await api.post('/api/member', {
+        memberData: memberSanitized
       });
 
       if (response.status === 200) {
@@ -123,10 +121,10 @@ const SignUp = (props) => {
       (skill) => skill
     );
     const newHowJoin =
-      data.howJoin !== "" && data.howJoin !== "Outro"
+      data.howJoin !== '' && data.howJoin !== 'Outro'
         ? data.howJoin
         : data.otherHowJoin;
-    //let member = data;
+    // let member = data;
     const {
       courses,
       otherCourses,
@@ -151,7 +149,7 @@ const SignUp = (props) => {
       teachSkills: newTeachSkills,
       socialSkills: newSocialSkills,
       maintenanceSkills: newMaintenanceSkills,
-      howJoin: newHowJoin,
+      howJoin: newHowJoin
     };
   };
 
@@ -209,7 +207,7 @@ const SignUp = (props) => {
       </Box>
     </Container>
   );
-};
+}
 
 SignUp.propTypes = {};
 

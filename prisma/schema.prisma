@@ -35,5 +35,14 @@ model Member {
   maintenance_skills   String?  @db.Text
   other_skills         String?  @db.Text
   courses              String?  @db.Text
-  photo_url              String?  @db.Text
+  photo_url            String?  @db.Text
+  marryId              Int
+  marry                Marry    @relation(fields: [marryId], references: [id])
+}
+
+model Marry {
+  id         Int      @id @default(autoincrement())
+  memberId   Member[]
+  marry_date DateTime @db.Date
+  photo_url  String?  @db.Text
 }

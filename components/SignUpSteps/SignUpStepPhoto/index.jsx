@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Box, Flex, Text, Grid, GridItem } from "@chakra-ui/react";
 import PhotoCapture from "../../PhotoCapture";
 
-const SignUpStepPhoto = ({ onChangeProceed }) => {
+function SignUpStepPhoto({ onChangeProceed }) {
   useEffect(() => {
     onChangeProceed(false);
     console.log(false);
@@ -26,6 +26,6 @@ const SignUpStepPhoto = ({ onChangeProceed }) => {
       </Box>
     </Box>
   );
-};
+}
 
 export default SignUpStepPhoto;

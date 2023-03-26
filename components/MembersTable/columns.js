@@ -1,7 +1,6 @@
 const COLUMNS_ORDER = [
-  'photo_url',
-  'id',
   'name',
+  'id',
   'birth',
   'gender',
   'civil_state',
@@ -26,13 +25,15 @@ const COLUMNS_ORDER = [
   'social_skills',
   'maintenance_skills',
   'other_skills',
+  'photo_url',
   'courses'
 ];
 
 const COLUMNS = [
   {
     Header: 'ID',
-    accessor: 'id'
+    accessor: 'id',
+    disabled: true
   },
   {
     Header: 'Nome',
@@ -40,7 +41,8 @@ const COLUMNS = [
   },
   {
     Header: 'Data de Nascimento',
-    accessor: 'birth'
+    accessor: 'birth',
+    type: 'date'
   },
   {
     Header: 'Sexo',
@@ -72,7 +74,8 @@ const COLUMNS = [
   },
   {
     Header: 'Email',
-    accessor: 'email'
+    accessor: 'email',
+    type: 'email'
   },
   {
     Header: 'Rede Social',
@@ -88,7 +91,8 @@ const COLUMNS = [
   },
   {
     Header: 'Tem Ministério?',
-    accessor: 'has_ministery'
+    accessor: 'has_ministery',
+    type: 'checkbox'
   },
   {
     Header: 'Ministério',
@@ -108,7 +112,8 @@ const COLUMNS = [
   },
   {
     Header: 'Tem GO?',
-    accessor: 'has_go'
+    accessor: 'has_go',
+    type: 'checkbox'
   },
   {
     Header: 'Líder de GO',
@@ -139,7 +144,7 @@ const COLUMNS = [
     accessor: 'courses'
   },
   {
-    Header: 'Photo',
+    Header: 'Foto',
     accessor: 'photo_url'
   }
 ];

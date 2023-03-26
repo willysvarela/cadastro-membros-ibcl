@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState } from 'react';
 import {
   Box,
   Text,
@@ -13,15 +13,14 @@ import {
   RadioGroup,
   Stack,
   Radio,
-  Select,
-} from "@chakra-ui/react";
+  Select
+} from '@chakra-ui/react';
 import {
   Controller,
   useFormContext,
   useFormState,
-  useFieldArray,
-} from "react-hook-form";
-import PhotoCapture from "../../PhotoCapture";
+  useFieldArray
+} from 'react-hook-form';
 
 function SignUpStepBasicData(props) {
   const { register, control } = useFormContext();
@@ -31,7 +30,7 @@ function SignUpStepBasicData(props) {
     <Box>
       <Box />
       <Grid
-        templateColumns={{ sm: "repeat(6, 1fr)", md: "repeat(6, 1fr)" }}
+        templateColumns={{ sm: 'repeat(6, 1fr)', md: 'repeat(6, 1fr)' }}
         gap={6}
       >
         <GridItem colSpan={6}>
@@ -40,9 +39,9 @@ function SignUpStepBasicData(props) {
             <Input
               id="name"
               type="text"
-              {...register("name", {
-                required: "Campo obrigatório",
-                maxLength: 256,
+              {...register('name', {
+                required: 'Campo obrigatório',
+                maxLength: 256
               })}
             />
             <FormErrorMessage>
@@ -57,7 +56,7 @@ function SignUpStepBasicData(props) {
             <Input
               id="birthDate"
               type="date"
-              {...register("birthDate", { required: "Campo obrigatório" })}
+              {...register('birthDate', { required: 'Campo obrigatório' })}
             />
             <FormErrorMessage>
               {errors.birthDate && errors.birthDate.message}
@@ -117,7 +116,7 @@ function SignUpStepBasicData(props) {
             <Input
               id="fatherName"
               type="text"
-              {...register("fatherName", { maxLength: 256 })}
+              {...register('fatherName', { maxLength: 256 })}
             />
             <FormErrorMessage>
               {errors.fatherName && errors.fatherName.message}
@@ -131,9 +130,9 @@ function SignUpStepBasicData(props) {
             <Input
               id="motherName"
               type="text"
-              {...register("motherName", {
-                required: "Campo obrigatório",
-                maxLength: 256,
+              {...register('motherName', {
+                required: 'Campo obrigatório',
+                maxLength: 256
               })}
             />
             <FormErrorMessage>
@@ -148,7 +147,7 @@ function SignUpStepBasicData(props) {
             <Input
               id="address"
               type="text"
-              {...register("address", { required: "Campo obrigatório" })}
+              {...register('address', { required: 'Campo obrigatório' })}
             />
             <FormErrorMessage>
               {errors.address && errors.address.message}
@@ -162,9 +161,9 @@ function SignUpStepBasicData(props) {
             <Input
               id="addressNumber"
               type="text"
-              {...register("addressNumber", {
-                required: "Campo obrigatório",
-                maxLength: 16,
+              {...register('addressNumber', {
+                required: 'Campo obrigatório',
+                maxLength: 16
               })}
             />
             <FormErrorMessage>
@@ -179,9 +178,9 @@ function SignUpStepBasicData(props) {
             <Input
               id="district"
               type="text"
-              {...register("district", {
-                required: "Campo obrigatório",
-                maxLength: 100,
+              {...register('district', {
+                required: 'Campo obrigatório',
+                maxLength: 100
               })}
             />
             <FormErrorMessage>
@@ -196,9 +195,9 @@ function SignUpStepBasicData(props) {
             <Input
               id="phone"
               type="phone"
-              {...register("phone", {
-                required: "Campo obrigatório",
-                maxLength: 30,
+              {...register('phone', {
+                required: 'Campo obrigatório',
+                maxLength: 30
               })}
             />
             <FormErrorMessage>
@@ -213,9 +212,9 @@ function SignUpStepBasicData(props) {
             <Input
               id="email"
               type="email"
-              {...register("email", {
-                required: "Campo obrigatório",
-                maxLength: 256,
+              {...register('email', {
+                required: 'Campo obrigatório',
+                maxLength: 256
               })}
             />
             <FormErrorMessage>
@@ -230,9 +229,9 @@ function SignUpStepBasicData(props) {
             <Input
               id="socialNetwork"
               type="text"
-              {...register("socialNetwork", {
-                required: "Campo obrigatório",
-                maxLength: 100,
+              {...register('socialNetwork', {
+                required: 'Campo obrigatório',
+                maxLength: 100
               })}
             />
             <FormErrorMessage>

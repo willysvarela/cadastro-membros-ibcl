@@ -36,8 +36,8 @@ model Member {
   other_skills         String?  @db.Text
   courses              String?  @db.Text
   photo_url            String?  @db.Text
-  marryId              Int
-  marry                Marry    @relation(fields: [marryId], references: [id])
+  marryId              Int?
+  marry                Marry?   @relation(fields: [marryId], references: [id])
 }
 
 model Marry {

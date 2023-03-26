@@ -25,7 +25,6 @@ function Dashboard() {
 
   if (isLoading) return <div>Loading...</div>;
   if (error) return <div>{error.message}</div>;
-
   if (!user)
     return (
       <div>
@@ -43,7 +42,9 @@ function Dashboard() {
         <AdminNavbar />
         <div>
           <div className="container mx-auto px-4">
-            <MembersTable onSelectMember={handleSelectMember} data={data} />
+            {data && (
+              <MembersTable onSelectMember={handleSelectMember} data={data} />
+            )}
           </div>
           <div>
             <MemberDetails

@@ -19,7 +19,7 @@ function SignUpInitialStep(props) {
         <Box textAlign="center">
             <Box>
                 <Heading as="h1" size="2xl">CADASTRO DE MEMBRO IBCL</Heading>
-                <Heading as="h2">2021</Heading>
+                <Heading as="h2">2023</Heading>
             </Box>
             <Box marginTop="10px">
                 <Text fontWeight="bold">

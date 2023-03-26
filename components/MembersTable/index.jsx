@@ -35,17 +35,7 @@ fuzzyTextFilterFn.autoRemove = (val) => !val;
 
 function MembersTable({ onSelectMember, data }) {
   const tableData = useMemo(() => data, [data]);
-
-  const columns = useMemo(
-    () =>
-      Object.keys(data ? data[0] : []).map((column) => ({
-        Header: COLUMNS.find((item) => item.accessor === column).Header,
-        accessor: column
-      })),
-    [data]
-  );
-
-  useEffect(() => {}, []);
+  const columns = useMemo(() => COLUMNS, [COLUMNS]);
 
   const defaultColumn = React.useMemo(
     () => ({

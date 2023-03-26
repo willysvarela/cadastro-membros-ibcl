@@ -1,10 +1,7 @@
+import dayjs from 'dayjs';
+
 export default function dateToString(date) {
-  const month = `${date.getMonth() < 10 ? '0' : ''}${date.getMonth()}`;
-  const day = `${date.getDate() < 10 ? '0' : ''}${date.getDate()}`;
-  return `${date.getFullYear()}-${month}-${day}`;
+  return dayjs(date).format('YYYY-MM-DD');
 }
 
-export const dateFormatToShow = (date) => {
-  const splitted = date.split('-');
-  return `${splitted[2]}/${splitted[1]}/${splitted[0]}`;
-};
+export const dateFormatToShow = (date) => dayjs(date).format('DD/MM/YYYY');

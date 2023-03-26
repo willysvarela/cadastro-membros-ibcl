@@ -79,7 +79,7 @@ function PhotoCapture({ onConfirm, onCancel, defaultImage }) {
       />
 
       {image && <StyledImage src={result || defaultImage} alt="sd" />}
-      <StyledButtonContainer>
+      <StyledButtonContainer className="my-5">
         <Button
           colorScheme="green"
           size="lg"

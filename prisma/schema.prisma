@@ -36,13 +36,13 @@ model Member {
   other_skills         String?  @db.Text
   courses              String?  @db.Text
   photo_url            String?  @db.Text
-  marryId              Int?
-  marry                Marry?   @relation(fields: [marryId], references: [id])
+  marry_id             Int?
+  marry                Marry?   @relation(fields: [marry_id], references: [id])
 }
 
 model Marry {
   id         Int      @id @default(autoincrement())
-  memberId   Member[]
+  member     Member[]
   marry_date DateTime @db.Date
   photo_url  String?  @db.Text
 }

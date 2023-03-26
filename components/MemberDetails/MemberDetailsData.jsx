@@ -28,7 +28,6 @@ function MemberDetailsData({ member, onClose }) {
 
   const handleSave = async () => {
     const memberForm = getValues();
-    console.log({ memberForm });
     try {
       const response = await api.post('/api/admin/member', {
         memberData: memberForm

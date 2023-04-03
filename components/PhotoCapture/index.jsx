@@ -41,7 +41,9 @@ function PhotoCapture({ onConfirm, onCancel, defaultImage }) {
   };
 
   const handleTakePhoto = () => {
-    onCancel();
+    if (onCancel) {
+      onCancel();
+    }
     inputRef.current.click();
   };
   const handleConfirmation = () => {
@@ -58,7 +60,7 @@ function PhotoCapture({ onConfirm, onCancel, defaultImage }) {
         setIsLoading(false);
         setImagePath(res.data); // maybe remove this state?
         setValue('photoUrl', res.data);
-        onConfirm(imagePath);
+        onConfirm(res.data);
       })
       .catch((err) => {
         setIsLoading(false);

@@ -1,34 +1,32 @@
 import nc from 'next-connect';
 import { PrismaClient } from '@prisma/client';
+import dayjs from 'dayjs';
 
 const Prisma = new PrismaClient();
 
 const saveMarry = async (req, res) => {
   const { body } = req;
 
-  const id = body.marryId;
   const marry = {
-    marry_date: new Date(body.marryDate),
-    photo_url: body.photoUrl
+    marry_date: dayjs(body.marry_date).toDate(),
+    photo_url: body.photo_url
   };
-  const { members } = body;
+  const { member } = body;
   try {
-    if (!id) {
-      const result = await Prisma.marry.create({
-        data: {
-          ...marry
-        }
-      });
+    const result = await Prisma.marry.create({
+      data: {
+        ...marry
+      }
+    });
+    console.log({ result });
+    member.forEach(async (item) => {
+      const data =
+        await Prisma.$executeRaw`UPDATE "Member" SET marry_id = ${result.id} WHERE id = ${item.id}`;
+      return data;
+    });
 
-      members.forEach(async (member) => {
-        const data =
-          await Prisma.$executeRaw`UPDATE "Member" SET marry_id = ${result.id} WHERE id = ${member.id}`;
-        return data;
-      });
-
-      res.status(200).json(result);
-      return;
-    }
+    res.status(200).json(result);
+    return;
   } catch (error) {
     res.status(500).json(error);
   }
@@ -38,14 +36,13 @@ const updateMarry = async (req, res) => {
   const { body } = req;
   const marry = {
     id: body.id,
-    marry_date: new Date(body.marryDate),
-    photo_url: body.photoUrl
+    marry_date: dayjs(body.marry_date).toDate(),
+    photo_url: body.photo_url
   };
-
   try {
     const data = await Prisma.marry.update({
       where: { id: marry.id },
-      data: marry
+      data: { ...marry }
     });
     res.status(200).json(data);
   } catch (err) {
@@ -60,7 +57,8 @@ const listMarries = async (req, res) => {
       member: {
         select: {
           id: true,
-          name: true
+          name: true,
+          gender: true
         }
       }
     }
@@ -69,7 +67,9 @@ const listMarries = async (req, res) => {
 };
 
 const resetMarries = async (req, res) => {
-  await Prisma.marry.deleteMany();
+  const { query } = req;
+  console.log({ query });
+  await Prisma.marry.delete({ where: { id: query.id } });
   res.status(200);
 };
 

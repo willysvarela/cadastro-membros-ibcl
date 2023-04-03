@@ -13,7 +13,9 @@ function Drawer() {
             <Link href="/admin/membros">Membresia</Link>
           </li>
           <li>
-            <Link href="/admin/casamentos">Casais</Link>
+            <Link href="/admin/casamentos" className={`${1}`}>
+              Casais
+            </Link>
           </li>
         </ul>
       </div>

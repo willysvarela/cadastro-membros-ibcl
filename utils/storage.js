@@ -1,21 +1,26 @@
-import { StorageClient } from "@supabase/storage-js";
+import { StorageClient } from '@supabase/storage-js';
 
-const STORAGE_URL = process.env.STORAGE_URL;
-const SERVICE_KEY = process.env.SERVICE_KEY;
-const BUCKET_NAME = process.env.BUCKET_NAME;
+const { STORAGE_URL } = process.env;
+const { SERVICE_KEY } = process.env;
+const { BUCKET_NAME } = process.env;
 
 const storageClient = new StorageClient(STORAGE_URL, {
   apikey: SERVICE_KEY,
-  Authorization: `Bearer ${SERVICE_KEY}`,
+  Authorization: `Bearer ${SERVICE_KEY}`
 });
 
 const saveOnStorage = async (fileData, fileBody) => {
+  const timestamp = new Date().getTime();
+  const splitted = fileData.originalFilename.split('.');
+  const extension = splitted[splitted.length - 1];
+  const fileName = `${timestamp}.${extension}`;
+
   const { data, error } = await storageClient
     .from(BUCKET_NAME)
-    .upload(fileData.originalFilename, fileBody, {
+    .upload(fileName, fileBody, {
       cacheControl: 3600,
       contentType: fileData.mimetype,
-      upsert: true,
+      upsert: true
     });
   if (error) {
     return error;

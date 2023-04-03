@@ -42,6 +42,7 @@ function Casamentos() {
   return (
     <Dashboard>
       <div>
+        <h1 className="text-4xl mb-10">Casais</h1>
         <button
           type="button"
           className="btn btn-primary"
@@ -54,9 +55,12 @@ function Casamentos() {
         <div className="flex flex-wrap">
           {data?.map((marry) => (
             <Card
-              title={`${marry.member[0].name.split(' ')[0]} & ${
-                marry.member[1].name.split(' ')[0]
+              title={`${marry.member[0]?.name.split(' ')[0]} & ${
+                marry.member[1]?.name.split(' ')[0]
               }`}
+              className="m-5"
+              img={marry.photo_url}
+              key={marry.id}
               description={dateFormatToShow(marry.marry_date)}
               onClick={() => handleSelect(marry)}
             />

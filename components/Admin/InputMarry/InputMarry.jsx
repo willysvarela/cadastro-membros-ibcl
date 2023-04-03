@@ -1,7 +1,16 @@
 /* eslint-disable jsx-a11y/no-noninteractive-tabindex */
 import React from 'react';
 
-function InputMarry({ id, title, value, items, gender, onChange, onSelect }) {
+function InputMarry({
+  id,
+  title,
+  value,
+  items,
+  gender,
+  disabled,
+  onChange,
+  onSelect
+}) {
   const filtered = items.filter((item) => item.gender === gender);
   return (
     <div className="form-control">
@@ -16,6 +25,7 @@ function InputMarry({ id, title, value, items, gender, onChange, onSelect }) {
           value={value}
           onChange={onChange}
           tabIndex={0}
+          disabled={disabled}
         />
         <ul
           tabIndex={0}

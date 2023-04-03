@@ -15,6 +15,10 @@ module.exports = {
   rules: {
     'react/prop-types': 'off',
     'react/jsx-props-no-spreading': 'off',
-    'no-nested-ternary': 'off'
+    'no-nested-ternary': 'off',
+    'react/react-in-jsx-scope': 'off',
+    'react/jsx-filename-extension': [1, { extensions: ['.js', '.jsx'] }],
+    'react/destructuring-assignment': 'off',
+    *: 'off'
   }
 };
